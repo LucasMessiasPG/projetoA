@@ -1,0 +1,28 @@
+allow-uncaught: false
+async-only: false
+bail: false
+check-leaks: false
+color: true
+delay: false
+diff: true
+exit: false # could be expressed as "no-exit: true"
+global:
+  - 'expect'
+extension:
+  - 'js'
+forbid-only: false
+forbid-pending: false
+full-trace: false
+growl: false
+inline-diffs: false
+recursive: true
+reporter: 'nyan'
+retries: 1
+slow: 75
+sort: false
+spec: 'test/**/*.spec.js' # the positional arguments!
+timeout: false # same as "no-timeout: true" or "timeout: 0"
+trace-warnings: true # node flags ok
+watch: false
+watch-ignore:
+  - 'node_modules'
