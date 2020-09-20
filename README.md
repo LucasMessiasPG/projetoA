@@ -4,13 +4,6 @@ Olá
 
 Para agilizar e facilitar a vida de quem vai rodar este projeto, estou colocando uma biblioteca chamada "mongodb-memory-server", com ela é possivel criar um "banco mongodb temporário" sem a necessidade de ter o mongodb na maquina, porém, se já tiver o mongodb instalado localmente, basta colocar as configurações na dotenv (.env) que o server ja ignorará esse banco temporário
 
-## Dados iniciais
-Acesse as rotas abaixo para criar os dados iniciais, rotas essas que são apenas para finalidade desses testes
-```
-	criar um usuário para poder ter acesso as rotas que exigem autenticação
-	cliete: http://localhost:8080/user/populate
-```
-
 ## Requisitos
 * node 14+
 
