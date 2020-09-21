@@ -8,7 +8,7 @@ if(!process.env.PORT) throw new Error("environment PORT not defined")
 app()
 .then(server => {
   server.listen(process.env.PORT, () => {
-    console.log(`Server magic happen start at: ${process.env.PORT}`)
+    console.log(`Server magic happen start at: http://localhost:${process.env.PORT}`)
   })
 })
 .catch(err => {

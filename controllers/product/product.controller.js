@@ -1,8 +1,8 @@
 import axios from "axios";
 import { MainController } from "../../base/controllers/main.controller.js";
-import LogModel from "../../models/log.model.js";
 import ClientModel from "../../models/client.model.js";
 import ProductModel from "../../models/product.model.js";
+import { logError } from "../../libraries/log.js";
 
 export class ProductController extends MainController {
   constructor(args){
@@ -39,16 +39,11 @@ export class ProductController extends MainController {
       let product = await ProductModel.findOne({ referenceId: id });
       if(!product){
         const URL_PRODUCT = `${process.env.API_PRODUCT}${id}/`;
-        let { data } = await axios.get(URL_PRODUCT).catch((error) => {
-          let log = new LogModel({
-            message: error.message,
-            stack: error.stack,
-            urlPath: URL_PRODUCT,
-            urlMethod: "GET"
-          });
-          return log.save();
+        let response = await axios.get(URL_PRODUCT).catch((error) => {
+          return logError(error, { url: URL_PRODUCT, method: "GET" })
         });
-        if(!data) throw new Error("api product got wrong response")
+        if(!response || !response.data) throw new Error("api product got wrong response")
+        let { data } = response;
         product = new ProductModel({ ...data, referenceId: data.id });
         await product.save();
       } else {

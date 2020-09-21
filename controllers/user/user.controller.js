@@ -1,6 +1,6 @@
 import { MainController } from "../../base/controllers/main.controller.js";
 import UserModel from "../../models/user.model.js";
-import ClientModel from "../../models/client.model.js";
+import { isValidEmail } from "../../libraries/validator.js"
 
 export class UserController extends MainController {
   constructor(args){
@@ -32,9 +32,8 @@ export class UserController extends MainController {
   async login({ body }){
     try {
       let { email, password } = body;
-      console.log(body);
+      if(isValidEmail(email) === false) return this.response(null, "invalid email", { status: 400 });
       let user = await UserModel.findOne({ email: email}).select('+password');
-      console.log(user);
       if(!user || await user.samePassword(password) === false){
         return this.response(null, "invalid credentials", { status: 400 });
       }

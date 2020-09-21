@@ -1,4 +1,5 @@
 import LogError from "../../models/log.model.js";
+import { logError } from "../../libraries/log.js";
 
 export class MainController{
   
@@ -27,13 +28,7 @@ export class MainController{
     }
     if(_error){
       dataResponse.error = _error;
-      let log = new LogError({
-        message: _error.message,
-        stack: _error.stack,
-        urlPath: this.req.url,
-        urlMethod: this.req.method,
-      })
-      await log.save();
+      await logError(_error, { url: this.req.url, method: this.req.method });
     }
     this.res.status(status).json(dataResponse)
     this.res.end();

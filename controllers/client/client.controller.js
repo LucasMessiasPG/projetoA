@@ -1,5 +1,6 @@
 import { MainController } from "../../base/controllers/main.controller.js";
 import ClientModel from "../../models/client.model.js";
+import { isValidEmail, isValidName } from "../../libraries/validator.js"
 
 export class ClientController extends MainController {
   constructor(args){
@@ -27,12 +28,14 @@ export class ClientController extends MainController {
   async createClient({ body }){
     try { 
       let { email, name, password } = body;
-      if(ClientModel.validateEmail(email) === false) return this.response(null, "invalid email", { status: 400 });
-      if(typeof name != "string" || name.length < 3) return this.response(null, "invalid name", { status: 400 });
+      if(isValidEmail(email) === false) return this.response(null, "invalid email", { status: 400 });
+      if(isValidName(name) == false) return this.response(null, "invalid name", { status: 400 });
 
       let duplicateClient = await ClientModel.findOne({ email });
 
       let data;
+
+      // usuário "suporte" tem a informação do usuário duplicado
       if(this.req.user.support){
         data = { clientId: duplicateClient._id };
       }
@@ -102,11 +105,11 @@ export class ClientController extends MainController {
       if(!client) return this.response(null, "client not found", { status: 404 });
 
       if(email){
-        if(ClientModel.validateEmail(email) === false) return this.response(null, "invalid email", { status: 400 });
+        if(isValidEmail(email) === false) return this.response(null, "invalid email", { status: 400 });
         client.email = email;
       }
       if(name){
-        if(typeof name != "string" || name.length < 3) return this.response(null, "invalid name", { status: 400 });
+        if(isValidName(name) == false) return this.response(null, "invalid name", { status: 400 });
         client.name = name
       }
       await client.save();

@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon server.js",
-    "test": "mocha test/index.spec.js test/**/*.spec.js"
+    "test": "mocha test/index.spec.js -recursive test/"
   },
   "dependencies": {
     "axios": "^0.20.0",

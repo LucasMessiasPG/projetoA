@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
-const saltRounds = 10;
+import { encrypt, compareHash } from "../libraries/auth.js";
 
 const { Schema, model, modelSchemas } = mongoose;
 
@@ -28,20 +27,16 @@ let schema = new Schema({
 schema.pre("save", function(next){
   const user = this;
   if(user.isModified("password") == false) return next();
-
-  bcrypt.genSalt(saltRounds, function(err, salt) {
+  encrypt(user.password, (err, hash) => {
     if(err) return next(err);
-    bcrypt.hash(user.password, salt, function(err, hash) {
-      if (err) return next(err);
-      user.password = hash;
-      next();
-    });
+    user.password = hash;
+    next();
   });
 });
 
 
-schema.methods.samePassword = function(password){
-  return bcrypt.compare(password, this.password)
+schema.methods.samePassword = async function(password){
+  return compareHash(password, this.password)
 }
 
 schema.methods.makeToken = function(){
@@ -50,10 +45,6 @@ schema.methods.makeToken = function(){
     name: this.name,
     email: this.email
   }, process.env.SECRET, { expiresIn: "1h" });
-}
-
-schema.statics.validateEmail = function(email){
-  return /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(email);
 }
 
 const name = "User";
