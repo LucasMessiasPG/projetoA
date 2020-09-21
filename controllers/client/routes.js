@@ -5,12 +5,11 @@ import authMiddleware from "../../base/middlewares/auth.js";
 let routes = express.Router();
 
 routes.get("/client/populate", ClientController.createRoute("populate"));
-
-routes.use(authMiddleware);
-
 routes.get("/client/:clientId", ClientController.createRoute("getClient"))
-routes.post("/client", ClientController.createRoute("createClient"))
-routes.delete("/client/:clientId/remove", ClientController.createRoute("removeClient"))
-routes.patch("/client/:clientId", ClientController.createRoute("updateClient"))
+
+// rotas autenticadas
+routes.post("/client", authMiddleware, ClientController.createRoute("createClient"))
+routes.delete("/client/:clientId/remove", authMiddleware, ClientController.createRoute("removeClient"))
+routes.patch("/client/:clientId", authMiddleware, ClientController.createRoute("updateClient"))
 
 export default routes;

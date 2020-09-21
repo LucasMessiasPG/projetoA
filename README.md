@@ -2,9 +2,11 @@
 
 Olá
 
-Atualmente eu trabalhando com typescript, mas como foi me passada para fazer o projeto em NodeJS e havia uma opção typescript resolvi seguir as orientações e fazer em js "nativo"
+Atualmente eu trabalhando com typescript, mas como foi me passada para fazer o projeto em NodeJS e havia uma opção typescript resolvi seguir as orientações e fazer em js "nativo".
 
-Para agilizar e facilitar a vida de quem vai rodar este projeto, estou colocando uma biblioteca chamada "mongodb-memory-server", com ela é possível criar um "banco mongodb temporário" sem a necessidade de ter o mongodb na máquina, porém, se já tiver o mongodb instalado localmente, basta colocar as configurações na dotenv (.env) que o server ja ignorará esse banco temporário
+Devido ao tamanho escopo do projeto não criarei as configurações do docker, porém, se necessario basta me avisar que incluo/crio as configurações.
+
+Para agilizar e facilitar a vida de quem vai rodar este projeto, estou colocando uma biblioteca chamada "mongodb-memory-server", com ela é possível criar um "banco mongodb temporário" sem a necessidade de ter o mongodb na máquina, porém, se já tiver o mongodb instalado localmente, basta colocar as configurações na dotenv (.env) que o server ja ignorará esse banco temporário.
 
 ## Requisitos
 * node 14+
@@ -83,7 +85,7 @@ $ yarn test
 
 ## fluxo para o primeiro uso da api
 
-A Collection (table) do user foi necessária, pois estava sendo requisitado autenticação em algumas rotas;
+> A Collection (table) do user foi necessária, pois estava sendo requisitado autenticação em algumas rotas;
 
 1. GET http://localhost:8080/user/populate
 

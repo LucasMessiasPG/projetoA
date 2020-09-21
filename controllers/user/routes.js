@@ -6,6 +6,7 @@ let routes = express.Router();
 
 routes.get("/user/populate", UserController.createRoute("populate"));
 routes.post("/user/login", UserController.createRoute("login"));
-routes.use(authMiddleware);
+
+// rotas autenticadas
 
 export default routes;

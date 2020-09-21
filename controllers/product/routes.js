@@ -5,9 +5,9 @@ import authMiddleware from "../../base/middlewares/auth.js";
 let routes = express.Router();
 
 
-routes.use(authMiddleware);
-
 routes.get("/products/:clientId", ProductController.createRoute("getProducts"))
-routes.post("/products/:clientId", ProductController.createRoute("addProduct"))
+
+// rotas autenticadas
+routes.post("/products/:clientId", authMiddleware, ProductController.createRoute("addProduct"))
 
 export default routes;
