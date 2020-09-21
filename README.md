@@ -61,7 +61,7 @@ DB_COLLECTION_ATUH=
 
 URL completo de exemplo
 ```
-mongodb://login:passowrd@host:port?authSource=collection
+mongodb://login:password@host:port?authSource=collection
 ```
 
 ## Comandos
