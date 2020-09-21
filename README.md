@@ -2,9 +2,9 @@
 
 Olá
 
-Atualmente eu trabalhando com typescript, mas como foi me passada para fazer o projeto em NodeJS e hávia uma opção typescript resolvi seguir as orientações e fazer em js "nativo"
+Atualmente eu trabalhando com typescript, mas como foi me passada para fazer o projeto em NodeJS e havia uma opção typescript resolvi seguir as orientações e fazer em js "nativo"
 
-Para agilizar e facilitar a vida de quem vai rodar este projeto, estou colocando uma biblioteca chamada "mongodb-memory-server", com ela é possivel criar um "banco mongodb temporário" sem a necessidade de ter o mongodb na maquina, porém, se já tiver o mongodb instalado localmente, basta colocar as configurações na dotenv (.env) que o server ja ignorará esse banco temporário
+Para agilizar e facilitar a vida de quem vai rodar este projeto, estou colocando uma biblioteca chamada "mongodb-memory-server", com ela é possível criar um "banco mongodb temporário" sem a necessidade de ter o mongodb na máquina, porém, se já tiver o mongodb instalado localmente, basta colocar as configurações na dotenv (.env) que o server ja ignorará esse banco temporário
 
 ## Requisitos
 * node 14+
@@ -16,7 +16,7 @@ Para agilizar e facilitar a vida de quem vai rodar este projeto, estou colocando
 
 ## Instalação
 
->Na primeira instalação será baixando o binario do mongodb para o uso da biblioteca "mongodb-memory-server"
+>Na primeira instalação será baixando o binário do mongodb para o uso da biblioteca "mongodb-memory-server"
 
 ```sh
 $ npm install
@@ -26,7 +26,7 @@ $ yarn install
 
 ## environment
 
-As variaveis de ambiente ficam localizada no arquivo chamando ".env" na raiz do projeto
+As variáveis de ambiente ficam localizada no arquivo chamando ".env" na raiz do projeto
 
 * Básico
 ```
@@ -59,7 +59,7 @@ DB_COLLECTION_ATUH=
 
 > API_PRODUCT - url da api de produtos
 
-URL completo de exmeplo
+URL completo de exemplo
 ```
 mongodb://login:passowrd@host:port?authSource=collection
 ```
@@ -83,15 +83,15 @@ $ yarn test
 
 ## fluxo para o primeiro uso da api
 
-A Collection (table) do user foi nescessaria, pois estava sendo requisitado autenticação em algumas rotas;
+A Collection (table) do user foi necessária, pois estava sendo requisitado autenticação em algumas rotas;
 
 1. GET http://localhost:8080/user/populate
 
 2. POST http://localhost:8080/user/login (com os dados que foi populado anteriormente)
-	* copie o token da resposta e coloque como autenticação Bearer em todas as proximas requests
+	* copie o token da resposta e coloque como autenticação Bearer em todas as próximas requests
 
 3. POST http://localhost:8080/client (com "name" e "email")
-	* anote o _id que irá retornar, será necessario para as proximas rotas
+	* anote o _id que irá retornar, será necessário para as próximas rotas
 
 4. pode escolher as ações abaixo alterando o ":clientId" pelo _id anotado
 	* GET http://localhost:8080/client/:clientId (coleta os dados do cliente)
