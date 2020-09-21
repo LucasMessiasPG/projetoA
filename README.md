@@ -88,7 +88,7 @@ A Collection (table) do user foi nescessaria, pois estava sendo requisitado aute
 1. GET http://localhost:8080/user/populate
 
 2. POST http://localhost:8080/user/login (com os dados que foi populado anteriormente)
-	* copie o token da resposta e coloque como autenticação Baerer em todas as proximas requests
+	* copie o token da resposta e coloque como autenticação Bearer em todas as proximas requests
 
 3. POST http://localhost:8080/client (com "name" e "email")
 	* anote o _id que irá retornar, será necessario para as proximas rotas
